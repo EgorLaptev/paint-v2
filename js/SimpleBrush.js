@@ -9,6 +9,11 @@ export class SimpleBrush extends Brush {
         ctx.strokeStyle = this.color;
         ctx.fillStyle = this.color;
 
+        if(Brush.rainbowBrush) {
+            ctx.strokeStyle = `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})`;
+            ctx.fillStyle = `rgb(${Math.round(Math.random()*255)},${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})`;
+        }
+
         ctx.lineWidth = this.size * 2;
         ctx.lineTo(ev.x, ev.y);
         ctx.stroke();
@@ -19,6 +24,7 @@ export class SimpleBrush extends Brush {
 
         ctx.beginPath();
         ctx.moveTo(ev.x, ev.y);
+
     }
 
 }
