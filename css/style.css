@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 18px;
+    font-family: sans-serif;
+    color: #ddd;
+}
+
+canvas {
+    display: block;
+}
+
+#tools {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 25px;
+    background-color: #222;
+}
+
+#tools label {
+    margin: 0 15px;
+}
+
+input[type='checkbox'],
+input[type='color'],
+input[type='file'] {
+    display: none;
+}
+
+label:not(:first-child) {
+    cursor: pointer;
+}
