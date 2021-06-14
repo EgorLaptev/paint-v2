@@ -44,3 +44,11 @@ cnv.addEventListener('mousemove', e => {
     }
 
 });
+
+/* Resize canvas */
+window.addEventListener('resize', evt => {
+
+    cnv.width  = window.innerWidth;
+    cnv.height = window.innerHeight;
+
+});
