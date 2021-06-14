@@ -3,17 +3,19 @@
 import {Canvas} from "./Canvas.js";
 import {Brush} from "./Brush.js";
 import {SimpleBrush} from "./SimpleBrush.js";
-
 import './toolsPanel.js';
-
-
-Canvas.brush = SimpleBrush;
 
 const cnv = document.getElementById('canvas'),
       ctx = cnv.getContext('2d');
 
+/* Canvas sizes */
 cnv.width = window.innerWidth;
 cnv.height = window.innerHeight;
+
+Brush.ctx = ctx;
+Brush.cnv = cnv;
+
+Canvas.brush = SimpleBrush; // Set default brush
 
 let mouseDown = false;
 
@@ -22,19 +24,22 @@ cnv.addEventListener('mouseup', evt => {
     mouseDown = false;
     ctx.beginPath();
 });
-
-cnv.addEventListener('mousemove', ev => {
+cnv.addEventListener('mousemove', e => {
 
     if (!mouseDown) return;
 
-    Canvas.brush.paint(ctx, ev);
+    Brush.pos.x = e.clientX;
+    Brush.pos.y = e.clientY;
+    
+    Canvas.brush.paint();
 
+    /* Mirror mode */
     if(Brush.mirror) {
 
-        Canvas.brush.paint(ctx, {
-            x: cnv.width - ev.x,
-            y: cnv.height - ev.y
-        });
+        Brush.pos.x = cnv.width - Brush.pos.x;
+        Brush.pos.y = cnv.height - Brush.pos.y;
+
+        Canvas.brush.paint();
 
     }
 
