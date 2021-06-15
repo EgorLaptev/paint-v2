@@ -7,11 +7,14 @@ export default class RectangleBrush extends Brush {
     static paint()
     {
 
-        this.ctx.fillStyle = this.ctx.strokeStyle = this.color;
-        this.ctx.lineWidth = 2;
+        this.ctx.fillStyle = this.fillColor;
+        this.ctx.strokeStyle = this.strokeColor;
+        this.ctx.lineWidth = this.lineWidth;
 
         this.ctx.beginPath();
-        this.ctx.strokeRect(this.pos.x, this.pos.y, this.size, this.size);
+        this.ctx.rect(this.pos.x-this.size/2, this.pos.y-this.size/2, this.size, this.size);
+        this.ctx.fill();
+        this.ctx.stroke();
 
     }
 

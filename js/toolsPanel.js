@@ -20,6 +20,9 @@ const brushSize     = document.getElementById('brushSize'),
       rectBrush     = document.getElementById('rectBrush'),
       imageBrush    = document.getElementById('image'),
       mirror        = document.getElementById('mirror'),
+      fillColor     = document.getElementById('fillColor'),
+      borderColor   = document.getElementById('borderColor'),
+      borderWidth   = document.getElementById('borderWidth'),
 
       checkBoxes    = document.querySelectorAll("input[type='checkbox']");
 
@@ -63,7 +66,7 @@ rainbowBrush.addEventListener('input', ev => {
 
         Canvas.brush = RainbowBrush;
 
-        [eraserBrush, rectBrush, circleBrush].forEach(brush => {
+        [eraserBrush, rectBrush, circleBrush, imageBrush].forEach(brush => {
            brush.checked = false;
            brush.previousElementSibling.style.color = 'white';
         });
@@ -77,7 +80,7 @@ rectBrush.addEventListener('input', ev => {
 
         Canvas.brush = RectangleBrush;
 
-        [eraserBrush, rainbowBrush, circleBrush].forEach(brush => {
+        [eraserBrush, rainbowBrush, circleBrush, imageBrush].forEach(brush => {
            brush.checked = false;
            brush.previousElementSibling.style.color = 'white';
         });
@@ -91,7 +94,7 @@ circleBrush.addEventListener('input', ev => {
 
         Canvas.brush = CircleBrush;
 
-        [eraserBrush, rainbowBrush, rectBrush].forEach(brush => {
+        [eraserBrush, rainbowBrush, rectBrush, imageBrush].forEach(brush => {
            brush.checked = false;
            brush.previousElementSibling.style.color = 'white';
         });
@@ -105,6 +108,10 @@ imageBrush.addEventListener('input', ev => {
     Canvas.brush = ImageBrush;
     Canvas.brush.imageURL = URL.createObjectURL(imageBrush.files[0]);
 
+    imageBrush.value = '';
+
+    imageBrush.previousElementSibling.style.color = '#0075FF';
+
     [eraserBrush, rainbowBrush, rectBrush, circleBrush].forEach(brush => {
        brush.checked = false;
        brush.previousElementSibling.style.color = 'white';
@@ -112,6 +119,19 @@ imageBrush.addEventListener('input', ev => {
 
 });
 
+fillColor.addEventListener('input', ev => {
+    fillColor.previousElementSibling.style.color = fillColor.value;
+    RectangleBrush.fillColor = fillColor.value;
+    CircleBrush.fillColor = fillColor.value;
+});
 
+borderColor.addEventListener('input', ev => {
+    borderColor.previousElementSibling.style.color = borderColor.value;
+    RectangleBrush.strokeColor = borderColor.value;
+    CircleBrush.strokeColor = borderColor.value;
+});
 
-
+borderWidth.addEventListener('input', ev => {
+    CircleBrush.lineWidth = borderWidth.value;
+    RectangleBrush.lineWidth = borderWidth.value;
+});

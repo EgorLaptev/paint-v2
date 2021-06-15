@@ -12,7 +12,7 @@ export default class ImageBrush extends Brush{
         let image = new Image();
         image.src = this.imageURL;
 
-        this.ctx.drawImage(image, this.pos.x-this.size/2, this.pos.y-this.size/2, this.size, this.size);
+        this.ctx.drawImage(image, this.pos.x-this.size/2, this.pos.y-this.size/2, this.size*2, this.size*2);
     }
 
 }
